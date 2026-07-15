@@ -1,0 +1,92 @@
+---
+sidebar_position: 1
+title: Connect Your BuzzerBeater Account
+description: Set up JerryBB with read-only BuzzerBeater API access and keep your data current.
+---
+
+# Connect Your BuzzerBeater Account
+
+JerryBB connects to BuzzerBeater through read-only BBAPI access. This lets JerryBB read the team, roster, schedule, match, boxscore, play-by-play, and player information needed for its analysis without changing your BuzzerBeater team.
+
+## What you need
+
+Before starting, have:
+
+- a verified JerryBB account,
+- your BuzzerBeater login, and
+- the read-only API security code from BuzzerBeater's BBAPI settings.
+
+JerryBB asks for the BuzzerBeater login and the API security code during onboarding. It does not ask for your BuzzerBeater password. The code is encrypted before JerryBB stores it, and your team data is kept inside your private workspace.
+
+:::note Screenshot placeholder
+Add an authenticated screenshot of the JerryBB onboarding form showing “Connect your BuzzerBeater team”, the login field, the read-only API security code field, and the “Connect my team” button. The current screenshot pack contains signed-in product pages but not the onboarding form.
+:::
+
+## Connect the team
+
+1. Sign in to JerryBB with your email and one-time code.
+2. When JerryBB opens onboarding, enter your BuzzerBeater login.
+3. Enter the read-only API security code from BuzzerBeater's BBAPI settings.
+4. Select **Connect my team**.
+5. Keep the page open while JerryBB validates the connection, identifies your team, and performs the initial sync. Initial setup may take a minute.
+6. Open Home after the connection finishes and check the freshness state before using the analysis pages.
+
+If you already have JerryBB data and the onboarding page offers **Link my existing account**, use that explicit action instead of creating a second workspace.
+
+## What JerryBB reads and why
+
+| BuzzerBeater data | Used in JerryBB for |
+| --- | --- |
+| Current roster and player skills | Your Team, opponent rosters, probable starters, player overview, and lineup context. |
+| Schedule and match results | Home, opponent games, upcoming-match context, and links to completed matches. |
+| Boxscores | Player game logs, tactical-history coverage, ratings context, and match analysis. |
+| Play-by-play | Shot-zone evidence and deeper tactical-history context when available. |
+| Player and team snapshots | DMI, skill history, freshness indicators, and historical comparisons. |
+
+JerryBB combines these imported observations into calculated summaries and recommendations. A recommendation is not a direct BuzzerBeater value, and it is not a guarantee of the next result.
+
+## JerryBB is not fully automatic yet
+
+The connection gives JerryBB permission to read BuzzerBeater data; it does not mean every page is continuously synchronized. To keep BBAPI usage responsible and predictable, many updates are user-triggered.
+
+Expect to use the visible **Refresh**, **Fetch**, **Resync**, **Import**, or **Refresh BBAPI** buttons when you need current information:
+
+- **Refresh team** updates your team's current roster and related team data.
+- **Refresh BBAPI** on an opponent roster pulls that opponent's roster from BuzzerBeater.
+- **Refresh games** on an opponent's Games tab pulls schedule and available finished-game data.
+- **Fetch missing** on tactical history fills missing opponent roster context.
+- **Resync** reruns the opponent refresh and analysis flow after new data is available.
+- **Import games** lets you add boxscore or play-by-play files when a direct fetch is not available.
+
+The future product may automate more of these updates. Until then, the refresh control on the page is part of the normal workflow, not an optional troubleshooting step.
+
+## A practical refresh routine
+
+1. Before preparing for a game, open Home and check the freshness indicator.
+2. Refresh your team if your roster, skills, or recent team data may have changed.
+3. Open the opponent's Roster tab and choose **Refresh BBAPI** when you need the current roster.
+4. Open the opponent's Games tab and choose **Refresh games** before relying on the recent-game list.
+5. Return to Tactical History. If it reports missing rosters or stale evidence, choose **Fetch missing** or **Resync**.
+6. Reopen the Briefing after the refresh finishes so it can use the newest available evidence.
+
+## If the connection or refresh fails
+
+- Recheck that the BuzzerBeater login and read-only API security code are correct.
+- Confirm that the API code is still valid in BuzzerBeater's BBAPI settings.
+- Wait for a refresh to finish before starting another one.
+- If a page remains empty, use the Import page for boxscore or play-by-play files and then return to the relevant analysis page.
+- If the connection succeeds but a page still looks stale, use that page's refresh control; signing in alone does not guarantee fresh data.
+
+## Limitations and freshness
+
+- JerryBB only knows what has been successfully fetched or imported.
+- A connected account can still have partial tactical history when boxscores or play-by-play are missing.
+- Refreshes depend on BuzzerBeater API availability, rate limits, and the data available for the selected team or opponent.
+- Current roster data and historical game evidence can have different timestamps. Check freshness or coverage indicators before interpreting them together.
+
+## What to do next
+
+- [Getting Started](./intro)
+- [Home](./home)
+- [Prepare for an Opponent](./opponent-preparation)
+- [Your Team](./my-team)

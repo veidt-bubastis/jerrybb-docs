@@ -1,0 +1,50 @@
+---
+sidebar_position: 2
+title: Player Pages
+description: Read a player's current profile, recent games, skill history, and development snapshots.
+---
+
+# Player Pages
+
+Player pages answer questions about one player rather than the whole team. Use **Overview** for current context and recent performance, and **History** for skill and DMI movement over imported snapshots.
+
+## Player Overview
+
+The Overview page brings together the player's position, age, height, team role, DMI, games played, minutes, scoring, assists, and recent-game log.
+
+![Player Overview showing current profile metrics and recent games](/img/jerrybb/07-player-overview.png)
+
+The recent-game table is historical evidence from the games available to JerryBB. It may not include every BuzzerBeater game if the relevant data has not been synced or imported.
+
+## Player History
+
+The History page focuses on development snapshots. It shows current and peak DMI, skill tiers, snapshot age, DMI evolution, skill progression, and a game log.
+
+![Player History showing DMI evolution and skill progression](/img/jerrybb/08-player-history.png)
+
+Read the **Snapshot age** card before interpreting movement. A change between two snapshots shows that the stored observations differ; it does not by itself explain why the change occurred or prove that training caused it.
+
+## Recommended workflow
+
+1. Open the player from Your Team or an opponent roster.
+2. Start on **Overview** to confirm the player, position, current DMI, and recent-game context.
+3. Move to **History** when the question is development, skill progression, or changes across snapshots.
+4. Check snapshot age and game-log coverage before comparing values.
+5. Return to Your Team, Tactical History, or an opponent Briefing when you need team-level context.
+
+## Data and freshness
+
+Player pages use the roster, player snapshots, and imported game data available in JerryBB. Current skills and DMI become stale when the team or opponent roster has not been refreshed. Recent games and game logs depend on boxscore or match data being fetched or imported.
+
+## Limitations and confidence
+
+- A missing game log means the relevant game data is not available, not that the player did not play.
+- Snapshot age affects how confidently you can describe current skills.
+- DMI and skill changes are observations across stored snapshots; JerryBB does not infer a complete training history from them.
+- Player pages do not replace lineup or tactical-history views when the decision concerns a full five-player unit.
+
+## What to do next
+
+- [Your Team](./) for roster-level context and refresh controls.
+- [My Team Tactical History](./tactical-history) for player usage across tactics.
+- [Connect Your BuzzerBeater Account](../connect-your-buzzerbeater-account) if player data is missing or stale.

@@ -29,8 +29,9 @@ The current view is built from imported games and the evidence they contain:
 - Players by tactic shows player splits, role-shift hints, and position profiles for the selected roster player.
 - Opposition strength groups the same imported games by roster-strength tier so you can compare outcomes against stronger, equal, weaker, or unknown opponents.
 
-> Screenshot placeholder: add a current capture of the Team tactics view for a real opponent with imported games, ideally showing the summary strip, analysis readout, and outcome matrix together.
-> Owner question: which opponent should be the canonical example for this page once a live screenshot is available?
+![Opponent Tactical History showing Team tactics, coverage cards, and the effectiveness matrix](/img/jerrybb/04-opponent-tactical-team.png)
+
+The Team tactics tab is the main history view. The sample shown has 18 games, but the correct sample for your opponent may be smaller or larger and may have different PBP coverage.
 
 ## Window and sample
 
@@ -55,6 +56,12 @@ In the current UI, the most useful readout is usually:
 
 The page’s recommendation-style signals are intentionally lightweight. The “Analysis readout” cards point to the strongest or weakest historical combination and the largest PBP-backed shot-zone signal, but they do not replace the matchup-specific briefing.
 
+Use the neighboring tabs when the question is player-specific or depends on the strength of the opponents in the sample:
+
+![Opponent Tactical History Players by tactic showing player selection and splits](/img/jerrybb/05-opponent-tactical-players.png)
+
+![Opponent Tactical History Opposition strength showing opponent tiers and coverage notes](/img/jerrybb/06-opponent-tactical-opposition.png)
+
 ## Difference from the briefing
 
 The briefing focuses on one upcoming game. Tactical History looks across games to identify patterns. Historical evidence informs preparation, but matchup-specific context still matters.
@@ -75,6 +82,7 @@ The briefing focuses on one upcoming game. Tactical History looks across games t
 - Player role-shift language is cautious by design. A one-game split is still a one-game split.
 - If the evidence links are incomplete, the Repair links action may restore roster-to-boxscore matches and unlock more complete player history.
 - Empty or partial states are part of the experience, not errors; they tell you where the evidence is missing.
+- If the page reports missing rosters or stale ratings, use **Fetch missing** or **Resync**. These are manual actions; the tactical page does not silently fetch every missing record when you open it.
 
 ## What to do next
 
