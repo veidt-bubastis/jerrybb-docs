@@ -1,0 +1,68 @@
+---
+sidebar_position: 0
+title: Prepare for an Opponent
+description: Use Briefing, Roster, Games, Tactical history, and Match Analysis together before tip-off.
+---
+
+# Prepare for an Opponent
+
+Prepare for an Opponent is the entry point for JerryBB's opponent workflow. The base `/opponent/[id]` route redirects to Briefing first, then the opponent tab strip lets you move into Roster, Games, and Tactical history. Match Analysis is the separate drill-down you open when one completed game deserves a closer look.
+
+## What this page is for
+
+Use this category when you want the fastest path from “who am I playing?” to “what should I do about it?” The opponent pages work together as a sequence:
+
+- Briefing gives the pre-game recommendation.
+- Roster shows who the opponent actually has available and who looks like a probable starter.
+- Games shows recent results plus the data-completeness badges for each row.
+- Tactical history shows repeated offensive and defensive patterns across the imported sample.
+- Match Analysis lets you verify one specific game in detail before you trust the broader trend.
+
+## How these pages fit together
+
+| Surface | Route | What it adds | Best used for |
+| --- | --- | --- | --- |
+| Briefing | `/opponent/[id]/briefing` | The matchup answer, confidence, risk flags, lineup suggestion, and GDP guidance. | Deciding what to do before tip-off. |
+| Roster | `/opponent/[id]/roster` | Player names, Pos, Age, Height, Salary, DMI, GS, and probable starter markers from the briefing. | Checking who can actually play and whether the roster snapshot looks fresh. |
+| Games | `/opponent/[id]/games` | Recent games with Date, Home, Away, Score, Result, Type, and Data status. | Finding the latest evidence or opening a specific match. |
+| Tactical history | `/opponent/[id]/tactical` | Team tactics, Players by tactic, Opposition strength, coverage counts, outcome matrices, and shot-zone signals. | Spotting repeat behavior and checking how those patterns performed. |
+| Match Analysis | `/match/[id]` | Boxscore, team analysis tabs, momentum, and evidence for one completed game. | Reviewing one game when a single result matters more than the trend. |
+
+> Screenshot placeholder: add an authenticated screenshot of the opponent header and tab strip on the Briefing page here, with Briefing, Roster, Games, and Tactical history visible together. The live site in this session stopped at the member-access gate, so I could not capture a verified opponent-workspace image.
+
+## Guided pre-game workflow
+
+1. Open an opponent from Home or the Opponents list. The base opponent route takes you to Briefing first.
+2. Read the page header before anything else. It shows the opponent name, record, recent form, roster DMI, and next-match context.
+3. Read Briefing and check the confidence and risk flags. If the page is roster-only, treat it as a partial answer rather than a final call.
+4. Switch to Roster when you need to confirm the available squad, the probable starters, or the shape of the roster snapshot.
+5. Switch to Games when you need the recent result trail. Use the Data badges to see whether a row is Complete, Boxscore only, Boxscore missing, Analysis missing, or Schedule only.
+6. Switch to Tactical history when you need repeated tendencies instead of one-game evidence. The Team tactics tab is the usual starting point, then Players by tactic and Opposition strength add context.
+7. Open Match Analysis from a specific game when one completed match is the best evidence. Use it to inspect the boxscore, team analysis, momentum, and evidence before you decide whether the broader pattern still holds.
+8. Return to Briefing once the supporting pages have answered the uncertainty you had.
+
+## Limitations and confidence
+
+- Briefing can downgrade to a roster-only state when the tactical sample is still too thin for a full recommendation.
+- Games only shows what has already been imported or refreshed; missing dates or missing data badges are telling you where the evidence is incomplete.
+- Tactical history is a sample, not a full season guarantee. It is strongest when the opponent has enough recent imported games plus boxscore and PBP coverage.
+- Match Analysis is a single-game view. Use it to verify evidence, not to replace tactical history.
+- A probable starter marker is a hint from the briefing and should not be treated as a confirmed lineup submission.
+
+## What to do next
+
+- [Opponent Briefing](./briefing) for the matchup-specific recommendation.
+- [Opponent Tactical History](./tactical-history) for recurring opponent patterns.
+- [Your Team Overview](../my-team) when the question shifts back to your roster.
+- [My Team Tactical History](../my-team/tactical-history) when you want to compare the same style of analysis against your own games.
+- Open `/match/[id]` from Games or Tactical history when one completed game is the right evidence to inspect.
+
+## Related pages
+
+- [Opponent Briefing](./briefing)
+- [Opponent Tactical History](./tactical-history)
+- [Getting Started](../intro)
+
+## Open questions
+
+- Which opponent should be the canonical screenshot for this page once authenticated access is available?

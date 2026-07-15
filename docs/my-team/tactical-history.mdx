@@ -1,35 +1,92 @@
 ---
 sidebar_position: 1
 title: My Team Tactical History
-description: Review how your team has performed under different tactics.
+description: Review how your team has behaved across multiple games.
 ---
 
 # My Team Tactical History
 
-My Team Tactical History examines your team's past tactical choices and outcomes across multiple games.
+My Team Tactical History is the own-team version of JerryBB's tactical history. In the app it lives under My Team tactics, and the Team Tactics tab shows how your imported games line up with the tactics your team used, the results that followed, and the context available for each sample.
 
 ## What this page is for
 
-Use it to understand how your team has performed under different tactics and to provide historical context for future preparation.
+Use this page when you want to compare your team's tactical choices across multiple games instead of reviewing one completed match. It helps you see which tactics appear often, how broad the imported sample is, and which tactic pairings deserve deeper review.
 
-## Decisions supported
+## What the history shows
 
-This history can help you investigate:
+The Team Tactics view shows a summary strip, usage cards, ratings context, shot-zone efficiency, and an outcome matrix:
 
-- Which tactics your team has used most often.
-- How results differ across the tactics in the available history.
-- Whether a result is supported by enough games to be useful.
-- Which team-level patterns deserve deeper lineup or player analysis.
+- Games in the current sample.
+- PBP coverage, meaning how many of those games have play-by-play evidence.
+- Boxscore coverage, meaning how many have imported boxscore detail.
+- Adaptability and tactic correlation, which are summary signals from the imported sample.
+- Our offense usage and our defense usage, including the most common opposing tactics faced with each row.
+- BBAPI ratings and positional PPP100 context where enough data exists.
+- Zone efficiency by our tactic.
+- Outcome matrix rows for offense/defense pairings, with games, win rate, average score differential, and a label.
 
-## How to interpret the history
+The page is about patterns in the imported history, not about proving that one tactic caused a win or loss.
 
-Separate what happened from what it means. A win or loss is an outcome, not by itself proof that a tactic caused the result. Review sample size, opponents, lineup context, and data completeness before treating a pattern as actionable.
+## How to compare tactics across games
+
+Start with the usage cards. They show which offensive and defensive tactics appeared most often and which opposing tactics were faced alongside them. Use that to spot repetition first.
+
+Then move to the outcome matrix. It groups games by offense and defense pairing, so you can compare the same tactic pair across multiple games instead of reading each game in isolation. The matrix shows:
+
+- how many games used that pairing,
+- the win rate for that pairing,
+- the average score differential, and
+- whether the current sample is still too small to label confidently.
+
+After that, use the ratings and zone sections as context, not as proof. They help you see whether the imported games carried similar boxscore or play-by-play shape, but they do not turn the history into a causal explanation.
+
+> Screenshot placeholder: add a current capture of the `Team Tactics` tab here, beside the summary strip and usage cards. Live member access blocked a verified production screenshot during this review, so the page still needs an authenticated capture or an owner-approved placeholder policy.
+
+## How to read it
+
+1. Open My Team tactics and switch to the `Team Tactics` tab.
+2. Check the summary strip first. The `Games`, `PBP coverage`, and `Boxscore coverage` cards tell you how much evidence is available.
+3. Read the pattern line under the summary. It is a concise summary of the current sample, not a statement of cause.
+4. Compare `Our offense usage` and `Our defense usage` to see which tactics repeat and which opposing tactics they were paired against.
+5. Review `BBAPI ratings and positional PPP100` and `Zone efficiency by our tactic` for supporting context.
+6. Use the `Outcome matrix` to compare tactic pairings across the sample.
+7. If you need player-level context, switch to `Players by Tactic`. If you want roster fit for a specific offense, switch to `Tactic Fit & Lineup`.
 
 ## Difference from Match Analysis
 
 Match Analysis explains one completed game. My Team Tactical History compares multiple games to reveal broader patterns.
 
+Use Match Analysis when you need one-game context or a single-result review. Use this page when you want to see whether a tactic or pairing keeps appearing across the imported sample.
+
+## Data and freshness
+
+This view is backed by `GET /team/tactical-history?limit=20` through the `useTeamTacticalHistory` hook. The implementation reuses the same tactical-history data model as the opponent history path, but scopes it to your current team.
+
+The data comes from imported match tactics, boxscores, play-by-play, ratings, and player logs. The `Refresh games` button fetches your latest played games from BB API, reruns stored analysis, and updates the My Team tactical views.
+
+## Limitations and confidence
+
+- If no games have been imported yet, the page shows `No tactical history yet`.
+- If the imported sample is thin, the page can still show tactics, but it should be read as directional.
+- `PBP coverage` and `Boxscore coverage` can lag behind the total game count.
+- `Zone efficiency by our tactic` only appears for offense/defense combinations with at least 2 games.
+- The outcome matrix only promotes rows to Strong or Weak once there are enough games; rows with fewer than 3 games stay in sample territory.
+- The pattern line and tactic correlation are summary signals from the sample, not proof of causation.
+
 ## Related pages
 
 - [Getting Started](../intro)
+- [Opponent Briefing](../opponent-preparation/briefing)
 - [Opponent Tactical History](../opponent-preparation/tactical-history)
+
+## What to do next
+
+If the tactical sample is still thin, import more finished games and use `Refresh games` again.
+
+If you need a closer read on one tactic's fit, move to the `Tactic Fit & Lineup` tab in the app.
+
+If you need player-level context, move to `Players by Tactic` and compare the split rows against the season average.
+
+## Open questions
+
+- Owner question: should this page keep the screenshot placeholder until an authenticated production capture of `/team/tactics?view=team` is available, or should a verified image be added later?

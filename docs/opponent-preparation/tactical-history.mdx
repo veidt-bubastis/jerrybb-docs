@@ -6,7 +6,7 @@ description: Review an opponent's tactical patterns across multiple games.
 
 # Opponent Tactical History
 
-Opponent Tactical History examines how an opponent has behaved across multiple games. It is designed for pattern recognition and context, not as a replacement for the matchup-specific briefing.
+Opponent Tactical History examines how an opponent has behaved across multiple games. On the current JerryBB route (`/opponent/{id}/tactical`), the page header reads “Opponent evidence layer” and the in-page tabs switch between Team tactics, Players by tactic, and Opposition strength. It is designed for pattern recognition and context, not as a replacement for the matchup-specific briefing.
 
 ## What this page is for
 
@@ -21,6 +21,21 @@ It can help you investigate:
 - Is the history broad enough to support a meaningful conclusion?
 - Which patterns should be carried into the upcoming briefing for closer matchup review?
 
+## Page anatomy
+
+The current view is built from imported games and the evidence they contain:
+
+- Team tactics shows a summary strip, an analysis readout, offense and defense usage, BBAPI ratings, PBP-backed zone efficiency, and an outcome matrix.
+- Players by tactic shows player splits, role-shift hints, and position profiles for the selected roster player.
+- Opposition strength groups the same imported games by roster-strength tier so you can compare outcomes against stronger, equal, weaker, or unknown opponents.
+
+> Screenshot placeholder: add a current capture of the Team tactics view for a real opponent with imported games, ideally showing the summary strip, analysis readout, and outcome matrix together.
+> Owner question: which opponent should be the canonical example for this page once a live screenshot is available?
+
+## Window and sample
+
+By default, the page shows the 20 most recent imported games for the opponent, ordered newest-first. The backend can accept a larger limit, but the current UI is built around that 20-game sample. The page also records whether the sample has boxscore coverage, PBP coverage, and BBAPI ratings coverage so you can judge how much of the history is actually backed by evidence.
+
 ## How to interpret the history
 
 Keep three things separate:
@@ -31,11 +46,46 @@ Keep three things separate:
 
 A tactic appearing frequently is not automatically a good tactic. Consider the time window, games included, sample size, opponent strength, and completeness of the underlying data.
 
+In the current UI, the most useful readout is usually:
+
+- the usage lists, which show what the opponent used most often and what they faced;
+- the outcome matrix, which links tactic/defense combinations to win rate, average point difference, and the underlying match pages;
+- the shot-zone table, which only appears when the opponent has PBP-backed range data and at least two games for a combination;
+- the player splits view, which is useful for spotting role changes but should not be treated as a one-game verdict when the sample is thin.
+
+The page’s recommendation-style signals are intentionally lightweight. The “Analysis readout” cards point to the strongest or weakest historical combination and the largest PBP-backed shot-zone signal, but they do not replace the matchup-specific briefing.
+
 ## Difference from the briefing
 
 The briefing focuses on one upcoming game. Tactical History looks across games to identify patterns. Historical evidence informs preparation, but matchup-specific context still matters.
 
+## Recommended workflow
+
+1. Confirm the sample window and the number of games before reading any performance signal.
+2. Start with the usage lists to identify recurring offensive and defensive choices.
+3. Check boxscore, PBP, and ratings coverage to understand which parts of the history are actually supported by evidence.
+4. Compare the outcome matrix and opposition-strength view, then inspect the linked games when a pattern matters to your plan.
+5. Return to [Opponent Briefing](./briefing) to translate a historical pattern into the context of the upcoming matchup.
+
+## Limitations and caveats
+
+- The sample is limited to the most recent imported games, so it may not reflect the opponent’s full season.
+- Zone efficiency only appears when PBP-backed data exists and a tactic/defense combination has at least two games.
+- BBAPI ratings and position-specific summaries only appear for games refreshed with the corresponding boxscore data.
+- Player role-shift language is cautious by design. A one-game split is still a one-game split.
+- If the evidence links are incomplete, the Repair links action may restore roster-to-boxscore matches and unlock more complete player history.
+- Empty or partial states are part of the experience, not errors; they tell you where the evidence is missing.
+
+## What to do next
+
+Start with the Team tactics tab, then move outward:
+
+- Open [Opponent Briefing](./briefing) to see the matchup-specific recommendation that this history is meant to inform.
+- Use [My Team Tactical History](../my-team/tactical-history) to compare the same style of evidence against your own historical patterns.
+- Return to [Getting Started](../intro) if you want the broader product loop and page map.
+
 ## Related pages
 
 - [Opponent Briefing](./briefing)
+- [My Team Tactical History](../my-team/tactical-history)
 - [Getting Started](../intro)

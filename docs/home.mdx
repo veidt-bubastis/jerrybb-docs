@@ -1,0 +1,117 @@
+---
+sidebar_position: 2
+title: Home
+description: Learn what the signed-in Home dashboard surfaces and how to use its attention cues.
+---
+
+# Home
+
+Home is the signed-in dashboard route at `/dashboard`. The public `/` route is the marketing landing page. In an unauthenticated live session, `/dashboard` currently shows the member-access email sign-in gate instead of the dashboard cards described below.
+
+Use Home when you want a fast answer to “what needs my attention this week?” It is a summary page, not a deep analysis page. Its job is to point you at the next useful place in JerryBB.
+
+:::note Screenshot placeholder
+I could verify the member-access gate on `/dashboard`, but I could not capture a signed-in Home screen in this run. Owner question: should we capture this page from a seeded signed-in account, or keep a redacted production screenshot placeholder here until that is available?
+:::
+
+## Decisions supported
+
+Home helps you decide:
+
+- which opponent to open first;
+- whether the next match deserves a deeper briefing;
+- whether weekly minutes need attention in My Team;
+- whether the workspace looks fresh enough to trust;
+- whether recent imports are present or stale.
+
+## How to read it
+
+Read the page from top to bottom.
+
+1. The next-match banner is the main cue.
+
+   When the schedule snapshot includes a next opponent, Home shows a full-width banner with the opponent name, date, competition badge, and home/away badge. Clicking it opens that opponent’s page, which redirects to the opponent [Briefing](./opponent-preparation/briefing).
+
+   If no next match is known, the banner is hidden entirely.
+
+2. The week cards give you schedule context.
+
+   `This week` and `Last week` are calendar-week windows in the app timezone. `This week` shows upcoming or scheduled games in that window. `Last week` shows played games from the prior calendar week and shows the week record in the footer when there is data.
+
+   Empty states are plain and intentional:
+
+   - `No games this week`
+   - `No data yet`
+
+3. The game-shape card is your roster attention cue.
+
+   This card shows the weekly minute-risk snapshot for the roster with four columns: player, game shape, DMI, and total minutes. It only shows the first six rows and then adds `+N more` if more players are present.
+
+   The color on minutes is a risk cue:
+
+   - green for `optimal` / `good`
+   - amber for `under` / `over`
+   - red for `danger` / `none`
+
+   If no roster data is available yet, the card says `Sync your team and boxscores to see weekly minute risk.` and then falls back to `No roster data yet` once the query returns an empty list.
+
+4. The training-week card groups the same minute-risk data.
+
+   This view groups players into `Optimal / Good`, `Under / Over`, and `At risk`. The counts tell you where the roster needs a closer look, but they do not replace the full training planner.
+
+   Empty and loading behavior matches the game-shape card, and the footer links to `Open training planner →`.
+
+5. The recent-imports card tells you whether the workspace is fresh.
+
+   The card shows the latest six imports only. Each row includes an import type badge:
+
+   - `BS` for boxscore
+   - `PBP` for play-by-play
+   - `ROS` for roster
+
+   Rows show a match ID when one exists; otherwise they show the target name. The right-hand timestamp is relative, such as `5m ago`, `2h ago`, or `2d ago`.
+
+   If nothing has been imported yet, the card says `No imports yet`.
+
+## Data and freshness
+
+Home is assembled from several current snapshots:
+
+- `/schedule/highlights` for the next match, this week, last week, and week-range cards;
+- `/training/game-shape` for the minute-risk snapshot;
+- `/imports/recent?limit=6` for recent import activity;
+- `/sync/status` in the shell header for the freshness badge next to the sync controls.
+
+The header freshness badge uses the last successful sync time when it is available. It can read `Just now`, `Xm ago`, `Xh ago`, or `Xd ago`, and it links to Settings when present. The header sync button can also refresh the workspace state.
+
+Because these blocks come from separate queries, Home can be partially fresh and partially empty at the same time.
+
+## Limitations and confidence
+
+- Home is intentionally shallow. It tells you where to look next, but it does not explain why a tactic is recommended.
+- The next-match banner disappears if no next opponent is known.
+- Game shape is a weekly minute-risk snapshot, not a performance grade.
+- The training card is the same underlying data, just grouped differently.
+- Recent imports is capped at the latest six rows, so older history is not visible here.
+- Empty states usually mean data has not been synced or imported yet, not that the team has no history at all.
+- If one source is missing, the page can still render the others.
+
+## Recommended workflow
+
+1. Open Home after a sync or import.
+2. Read the next-match banner first.
+3. If it is present, open the opponent page and continue into [Opponent Briefing](./opponent-preparation/briefing).
+4. If the minute-risk cards show players that need attention, move into [My Team](./my-team/index) for the fuller roster view and then into [My Team Tactical History](./my-team/tactical-history) if you need a pattern check.
+5. If the recent-imports card is empty or stale, sync or import before trusting Home as your starting point.
+
+## What to do next
+
+- [Opponent Briefing](./opponent-preparation/briefing)
+- [Opponent Tactical History](./opponent-preparation/tactical-history)
+- [My Team](./my-team/index)
+- [My Team Tactical History](./my-team/tactical-history)
+- [Getting Started with JerryBB](./intro)
+
+## Open questions
+
+- Should we capture a seeded signed-in Home screenshot, or keep the explicit placeholder until a safe redacted production image is available?

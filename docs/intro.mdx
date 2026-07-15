@@ -1,40 +1,76 @@
 ---
 sidebar_position: 1
 title: Getting Started with JerryBB
-description: Learn what JerryBB is for and where to begin.
+description: Learn what JerryBB is for, where to start, and how the main product loop works.
 ---
 
 # Getting Started with JerryBB
 
-JerryBB is an assistant manager, scout, and analyst for BuzzerBeater. It brings together your team's data, opponent preparation, tactical history, player development, and match analysis so you can make better decisions before and after games.
+JerryBB is an assistant manager, scout, and analyst for BuzzerBeater. It brings together your team data, opponent preparation, tactical history, player development, and match analysis so you can make better decisions before and after games.
 
-## What JerryBB helps you do
+## What JerryBB is for
 
-- Prepare for an upcoming opponent.
-- Review how your team has performed under different tactics.
-- Inspect opponent tactical patterns across multiple games.
-- Understand player development, roster performance, and team context.
-- Review what happened in a completed match.
+Use JerryBB when you want a clearer pre-game plan or a better post-game read on what happened. It is built for managers who already have enough BuzzerBeater context to care about tactics, sample size, and matchup detail.
 
 ## The main product loop
 
-Before a match, start at **Home** and open the next opponent's **Briefing**. Use the briefing for the immediate matchup, then consult **Tactical History** when you need to understand whether the opponent's behavior is a recurring pattern rather than a one-game observation.
+JerryBB has two connected loops:
 
-After a match, use **Match Analysis** to review that specific game. Return to **My Team Tactical History** or the opponent's history when you want to compare patterns across multiple games.
+- Before a match: open **Home**, review the next opponent, then open that opponent's **Briefing**.
+- If the briefing feels thin or you want more context, open **Opponent Tactical History** to see whether the same behavior shows up across multiple games.
+- After a match: use **Match Analysis** for the completed game, then return to **My Team Tactical History** or the opponent's history when you want to compare patterns over time.
 
-## Important distinction
+The briefing is the immediate recommendation layer. Tactical history is the longer view that helps you decide whether the recommendation is backed by a repeatable pattern or just the latest data point.
 
-Single-match preparation and tactical history answer different questions:
+## Where to begin
+
+Start on the live workspace Home page at `/dashboard` after signing in. In the current live site, the public landing page is visible at `/`, and `/dashboard` currently shows the member-access gate with the email sign-in form before you reach the workspace.
+
+> Screenshot placeholder: I could verify the member-access gate on `/dashboard`, but I could not capture a signed-in Home screen in this run. Owner question: should this page gain a signed-in Home screenshot later, or should onboarding docs stay text-only until an authenticated workspace capture is available?
+
+## Prerequisites and data readiness
+
+JerryBB is most useful when the underlying data is current enough to support the page you opened.
+
+- Sign in to the workspace first.
+- Sync your BuzzerBeater account data so Home and roster pages have current team and schedule context.
+- Import boxscores and play-by-play when you want tactical history, shot-zone evidence, or deeper pattern analysis.
+- Treat empty states, roster-only briefings, and low-sample outputs as “need more data,” not as final conclusions.
+
+The implementation currently falls back to a reduced briefing when only roster data is available, and tactical-history pages stay empty until enough boxscore or PBP evidence has been imported.
+
+## Guided first session
+
+1. Open **Home** and check the next opponent, the time to tip, and any freshness or import indicators.
+2. Open the opponent's **Briefing** and read the recommendation first.
+3. If the recommendation feels uncertain, switch to **Opponent Tactical History** and compare the sample size, trend, and recent evidence.
+4. If the game has already been played, use **Match Analysis** for the single-game readout.
+5. Come back to **My Team Tactical History** when you want to compare your own tactical patterns across multiple games.
+
+## Briefing versus historical analysis
+
+These pages answer different questions:
 
 - **Briefing:** What should I consider for this upcoming game?
-- **Tactical history:** What patterns have appeared across previous games?
+- **Opponent Tactical History:** What patterns have appeared across previous games?
+- **My Team Tactical History:** What patterns have appeared in my own games?
 
-Historical evidence can inform preparation, but it does not replace matchup-specific analysis.
+Use the briefing for the immediate matchup. Use historical pages to test whether a pattern is recurring, how much data supports it, and whether the current recommendation needs more caution.
 
-## What comes next
+## Limitations and confidence
 
-The support site will document each page, metric, data source, confidence state, and recommended workflow. Begin with:
+- Historical evidence is only as strong as the imported games behind it.
+- Tactical history can be empty, partial, or low-confidence when boxscores and PBP captures are missing.
+- A strong-looking result in one game does not prove the tactic caused the outcome.
+- JerryBB is not a live-game companion; it is a pre-game and post-game analysis tool.
 
+## What to do next
+
+Continue into the pilot pages that explain the main workflow in more detail:
+
+- [Home](./home)
+- [Your Team](./my-team)
+- [Prepare for an Opponent](./opponent-preparation)
 - [Opponent Briefing](./opponent-preparation/briefing)
 - [Opponent Tactical History](./opponent-preparation/tactical-history)
 - [My Team Tactical History](./my-team/tactical-history)

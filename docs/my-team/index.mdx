@@ -1,0 +1,92 @@
+---
+sidebar_position: 0
+title: Your Team Overview
+description: Start here to review your roster, training, game shape, and the next team page to open.
+---
+
+# Your Team Overview
+
+Your Team Overview is the starting point for checking roster context, minute management, and the current training week. In the app, this surface is labeled My Team.
+
+## What this page is for
+
+Use this page when you need a fast read on how your own team is doing right now:
+
+- confirm that the roster and lineup data are synced,
+- compare player usage in the Lineup Stats tab,
+- review current-week training minutes and the selected training target,
+- check Game Shape coverage for minute management, and
+- decide whether the next question belongs in tactical history, a player page, the schedule, or a match analysis page.
+
+## When to use each page
+
+| Surface | App route | Use it when | Best question |
+| --- | --- | --- | --- |
+| Your Team overview | `/team` | You want the roster-level summary with Lineup Stats, Training Minutes, and Game Shape in one place. | “Is the team data current, and which tab should I open next?” |
+| Your Team tactical history | `/team/tactics` | You want patterns across imported games instead of a single-game readout. | “How has our team actually played across multiple games?” |
+| Player pages | `/player/[id]/overview`, `/player/[id]/history` | You want one player's fit, skills, recent games, or development history. | “How is this player trending?” |
+| Schedule | `/schedule` | You want the season view, upcoming games, or a shortcut into a specific match. | “What is coming next?” |
+| Match analysis | `/match/[id]` | You want one completed game, its boxscore, and the imported evidence behind it. | “What happened in that game?” |
+
+## How to read it
+
+The page is split into three tabs.
+
+### Lineup Stats
+
+Lineup Stats is the roster-and-match view. It can show season aggregate data or a single selected match. Use the match filter when you want to understand one game in context; use the season aggregate when you want a broader baseline.
+
+When the roster has not been synced, the page shows a clear empty state instead of guessing. If a roster snapshot is available, the table shows its date so you can tell how fresh the underlying skills data is.
+
+:::note Screenshot placeholder
+Add an authenticated screenshot of the Lineup Stats tab here. The live production app stopped at the member-access sign-in page in this session, so I could not capture a verified team overview image.
+:::
+
+### Training Minutes
+
+Training Minutes is the current-week planner view. Choose the training area and the specific option, then review the minute target and the list of eligible matches that were counted.
+
+Two details matter here:
+
+- the chosen training area and option are remembered locally in your browser, not saved as a server-side assignment, and
+- the included and excluded match audit shows which games were counted for the current training week.
+
+If no eligible games have been recorded yet, the page says so directly. That is a timing issue, not a failure of the planner.
+
+### Game Shape
+
+Game Shape tracks the current week’s minute coverage. It is a workload check, not a player-rating page.
+
+The warning text on this tab matters: zero-minute values are current-week coverage, not a signal that the player has become weak. Use it to spot overuse, underuse, or missing minutes before you over-interpret the numbers.
+
+## Guided workflow
+
+1. Open `/team` and confirm that the roster and current sync state look reasonable.
+2. Start with Lineup Stats if you need a season baseline or want to inspect one match from the search list.
+3. Switch to Training Minutes when you need to verify the current training target, the minute target, and which games counted.
+4. Switch to Game Shape when you want a minute-management check for the same roster.
+5. Move to `/team/tactics` when you need repeating tactical patterns, `/player/[id]/overview` or `/player/[id]/history` when the question is player-specific, `/schedule` when the question is about upcoming games, and `/match/[id]` when the question is about one completed game.
+
+## Data and freshness
+
+This page is built from synced JerryBB team, roster, match, boxscore, and training data. The page reflects whatever has already been imported; it can lag behind BuzzerBeater until you refresh the team or import the missing games.
+
+The current-week views use the eligible matches that fall inside the training week window, so the numbers can change after the next import or sync.
+
+## Limitations and confidence
+
+- Empty states mean the app does not yet have enough synced data for that section.
+- Season aggregate and single-match views answer different questions, so do not compare them as if they were the same sample.
+- Game Shape coverage is not a player rating.
+- Tactical history and match analysis are separate surfaces; do not use one as a substitute for the other.
+- I could not capture a live contextual screenshot in this session because the production app was behind the member-access gate.
+
+## What to do next
+
+- [Your Team Tactical History](./tactical-history) for broader own-team patterns across games.
+- [Getting Started](../intro) for the top-level JerryBB workflow.
+- [Opponent Tactical History](../opponent-preparation/tactical-history) when the next question is about the other side instead of your roster.
+
+## Open questions
+
+- Can we capture an authenticated screenshot of the Lineup Stats tab for this page once live access is available?

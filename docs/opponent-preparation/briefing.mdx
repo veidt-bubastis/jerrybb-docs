@@ -6,7 +6,7 @@ description: Understand the upcoming matchup and the decisions the briefing supp
 
 # Opponent Briefing
 
-The Opponent Briefing is JerryBB's matchup-focused preparation page. It brings together the available evidence for one upcoming game and turns it into a concise pre-game readout.
+Opponent Briefing is JerryBB's matchup-focused preparation page. It sits under the opponent header and tab strip, then turns the available evidence for one upcoming game into a concise pre-game readout.
 
 ## What this page is for
 
@@ -21,6 +21,50 @@ The briefing can support questions such as:
 - How strong is the evidence behind the recommendation?
 - Is the available data sufficient, or does the opponent need more history imported?
 
+## How to read it
+
+Start with the opponent header above the tab strip. That header gives you the opponent name, record, recent form, roster DMI, and next-match context before you read the actual briefing content.
+
+The briefing itself has two main states.
+
+### Default briefing
+
+When the engine has enough tactical history, the page shows a summary card followed by one or more recommendation blocks:
+
+- Offense and defense each show a recommended tactic, a confidence label, a short rationale, and an optional alternative.
+- GDP shows the focus and pace read in a compact, high-emphasis format.
+- Lineup shows the recommended matchup rows, with your player on the left and the opponent player on the right.
+- Risk flags surface anything that could make the recommendation less trustworthy, including stale opponent roster or tactical-history data.
+
+Each recommendation block is designed to be read in the same order: the call first, then the rationale, then the alternative when present.
+
+> Screenshot placeholder: add a current authenticated capture of the default briefing summary, the first recommendation block, and the risk-flag section here. If the live app blocks screenshot capture, ask the owner for a fresh opponent-specific image to use as the canonical reference.
+
+### Roster-only briefing
+
+When the engine does not yet have enough tactical history, the page downgrades to a roster-only read instead of inventing a full tactical answer.
+
+In that state:
+
+- the summary card switches to a limited-data warning;
+- the page shows one or more inference blocks that explain what the roster suggests;
+- the lineup section still appears when the roster data can support it;
+- a mandatory risk flag says that no tactical history is available yet;
+- the page may show a Sync button for opponents that look newly created or otherwise thinly covered.
+
+The roster-only state is useful, but it is not a substitute for a full tactical briefing.
+
+## Guided pre-game workflow
+
+Use the page in this order:
+
+1. Open the opponent briefing from Home or from the opponent tab strip.
+2. Read the opponent header and summary first so you know who the page is about and how fresh the context looks.
+3. Review the offense, defense, GDP, and lineup sections together. The recommendation is the main answer; the rationale shows why the engine reached it.
+4. Check the confidence labels and risk flags before you act on the recommendation.
+5. If the page is roster-only, use the roster context, sync or import the missing data if appropriate, and return after more games have been captured.
+6. If you need to verify whether the same idea appears repeatedly over time, switch to tactical history for the broader pattern.
+
 ## Briefing versus tactical history
 
 The briefing answers: **What should I consider for this game?**
@@ -29,11 +73,37 @@ The briefing answers: **What should I consider for this game?**
 
 Use the two pages together. The briefing is matchup-specific; tactical history provides broader context.
 
-## Data and confidence
+## Data and freshness
+
+The briefing is built from the current imported roster, recent tactical games, the current roster context, and the next-match schedule context. The backend also records freshness for our roster, the opponent roster, opponent tactics, and payoff stats.
+
+When opponent roster or opponent tactical-history data is stale, the page surfaces that concern through risk flags rather than quietly treating the data as current.
+
+When the engine has fewer than three recent tactical games and no roster snapshot to lean on, it returns the roster-only state instead of a full recommendation.
+
+## Limitations and confidence
 
 The interpretation depends on the data available for the opponent and the quality of the imported games. When the evidence is thin or incomplete, treat the result as a prompt for further review rather than as a definitive conclusion.
 
+- Confidence can appear as high, medium, low, or be absent from a given payload.
+- A roster-only page means tactical patterns are still too thin for a full recommendation.
+- The page does not show a separate freshness widget; freshness is expressed through the summary state and risk flags.
+- The lineup block is only as strong as the imported roster and matchup data behind it.
+- The page can still be useful when it is incomplete, but it should be read as a partial answer, not a final one.
+
+## What to do next
+
+If the page still leaves you uncertain, continue in one of these directions:
+
+- Open [Opponent Tactical History](./tactical-history) to see whether the same tactic pattern has repeated across games.
+- Use the opponent's roster and games tabs in-product when you want a deeper look at the current squad or recent results.
+- Return after syncing or importing more games if the page is roster-only or risk flags say the data is stale.
+
 ## Related pages
 
-- [Opponent Tactical History](./tactical-history)
 - [Getting Started](../intro)
+- [Opponent Tactical History](./tactical-history)
+
+## Open questions
+
+- Which opponent should be used for the canonical screenshot, and can the owner provide a current authenticated capture if live access remains blocked?
